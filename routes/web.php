@@ -12,10 +12,11 @@
 */
 Route::get('/','UserController@index');
 
-Route::get('add', 'UserController@showFormAddUser');
-Route::post('add','UserController@add')->name('users.add');
+//Route::view : return a view
+Route::view('/store', 'store')->name('users.view.store');
+Route::post('store','UserController@store')->name('users.store');
 
-Route::get('edit/{id}', 'UserController@showFormEditUser');
+Route::get('edit/{id}', 'UserController@showFormEditUser')->name('users.view.edit');
 Route::post('edit/{id}','UserController@edit')->name('users.edit');
 
 Route::get('delete/{id}','UserController@delete');

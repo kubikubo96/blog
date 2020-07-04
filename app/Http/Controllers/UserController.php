@@ -16,10 +16,10 @@ class UserController extends Controller
 
     function showFormAddUser()
     {
-        return view('add');
+        return view('store');
     }
 
-    function add(Request $request)
+    function store(Request $request)
     {
         $users = new User();
 
@@ -27,7 +27,8 @@ class UserController extends Controller
 
         $users->save();
 
-        return redirect('/add');
+//        return redirect('/store');
+        return redirect()->route('users.view.store')->with('status', 'Save Success!');
     }
 
     function showFormEditUser($id)
@@ -45,7 +46,8 @@ class UserController extends Controller
 
         $user->save();
 
-        return redirect('edit/'.$user->id);
+//        return redirect('edit/'.$user->id);
+        return redirect()->route('users.edit', ['id' => $id])->with('status', 'Edit Success!');
     }
 
     function delete($id)
